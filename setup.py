@@ -1,10 +1,13 @@
 from setuptools import setup
 
-setup(name='YourAppName',
+setup(name='comidatweet',
       version='1.0',
       description='OpenShift App',
-      author='Your Name',
-      author_email='example@example.com',
-      url='http://www.python.org/sigs/distutils-sig/',
-      install_requires=['bottle'],
+      author='Jesús Bueno',
+      author_email='example@123.com',
+      url='comidatweet-jesusba.rhcloud.com',
+      install_requires=['bottle'
+	'json'
+	'requests'
+	'requests_oauthlib'],
      )

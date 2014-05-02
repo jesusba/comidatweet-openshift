@@ -6,8 +6,9 @@ setup(name='comidatweet',
       author='Jesus Bueno',
       author_email='example@123.com',
       url='comidatweet-jesusba.rhcloud.com',
-      install_requires=['bottle'
-	'json'
-	'requests'
+      install_requires=[
+	'bottle',
+	'json',
+	'requests',
 	'requests_oauthlib'],
      )

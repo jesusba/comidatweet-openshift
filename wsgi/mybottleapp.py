@@ -1,7 +1,9 @@
-from bottle import get, post, template, run, request, route, default_app
+import bottle
 import requests
+import json
 from requests_oauthlib import OAuth1
 from urlparse import parse_qs
+from bottle import get, post, template, run, request, route, default_app
 
 REQUEST_TOKEN_URL = "https://api.twitter.com/oauth/request_token"
 AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate?oauth_token="
@@ -61,15 +63,21 @@ def tweet_submit():
                       data={"status":texto},
                       auth=oauth)
     if r.status_code == 200:
-        return "<p>Tweet enviado correctamente.</p><form><input type='button' value='VOLVER ATRÁS' name='Back2' onclick='history.back()' /></form>"
+        return "<p>Tweet enviado correctamente.</p><form><input type='button' value='VOLVER ATRAS' name='Back2' onclick='history.back()' /></form>"
     else:
-        return "<p>Problema al enviar el tweet.</p><form><input type='button' value='VOLVER ATRÁS' name='Back2' onclick='history.back()' /></form>"
+        return "<p>Problema al enviar el tweet.</p><form><input type='button' value='VOLVER ATRAS' name='Back2' onclick='history.back()' /></form>"
 
 import os
 from bottle import TEMPLATE_PATH
 
-TEMPLATE_PATH.append(os.path.join(os.environ['OPENSHIFT_HOMEDIR'], 
-    'app-root/runtime/repo/wsgi/views/')) 
+ON_OPENSHIFT = False
+if os.environ.has_key('OPENSHIFT_REPO_DIR'):
+    ON_OPENSHIFT = True
 
-application=bottle.default_app()
-
+if ON_OPENSHIFT:
+    TEMPLATE_PATH.append(os.path.join(os.environ['OPENSHIFT_HOMEDIR'], 
+                                      'runtime/repo/wsgi/views/'))
+    
+    application=default_app()
+else:
+    run(host='localhost', port=8080)

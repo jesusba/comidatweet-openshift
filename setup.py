@@ -1,4 +1,5 @@
 from setuptools import setup
+import oauthlib
 
 setup(name='comidatweet',
       version='1.0',

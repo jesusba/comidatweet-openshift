@@ -8,7 +8,6 @@ setup(name='comidatweet',
       url='comidatweet-jesusba.rhcloud.com',
       install_requires=[
 	'bottle',
-	'json',
 	'requests',
 	'requests-oauthlib'
 	],

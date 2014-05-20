@@ -10,6 +10,6 @@ setup(name='comidatweet',
 	'bottle',
 	'json',
 	'requests',
-	'requests_oauthlib'
+	'OAuth1'
 	],
      )

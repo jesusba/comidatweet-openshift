@@ -43,7 +43,7 @@ def get_access_token(TOKENS):
 def index():
     get_request_token()
     authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
-    return template('views/index.tpl', authorize_url=authorize_url)
+    return template('index.tpl', authorize_url=authorize_url)
 
 #Twiteando
 
@@ -51,7 +51,7 @@ def index():
 def get_verifier():
     TOKENS["verifier"] = request.query.oauth_verifier
     get_access_token(TOKENS)
-    return template('views/tweet.tpl')
+    return template('tweet.tpl')
     
 @bottle.post('/twittear')
 def tweet_submit():

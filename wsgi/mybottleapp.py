@@ -58,7 +58,7 @@ def tweet_submit():
     def get_verifier():
         TOKENS["verifier"] = bottle.request.query.oauth_verifier
         get_access_token(TOKENS)
-    texto = "Tweet enviado desde openshift"
+    texto = request.forms.get("tweet")
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
                    resource_owner_key=TOKENS["access_token"],

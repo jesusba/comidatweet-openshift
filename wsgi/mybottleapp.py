@@ -9,8 +9,8 @@ REQUEST_TOKEN_URL = "https://api.twitter.com/oauth/request_token"
 AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate?oauth_token="
 ACCESS_TOKEN_URL = "https://api.twitter.com/oauth/access_token"
 
-CONSUMER_KEY = "xxxxx"
-CONSUMER_SECRET = "xxxxx"
+CONSUMER_KEY = "dfy0QjVcTRWQ4ATV4tbOkJCw0"
+CONSUMER_SECRET = "lYG1Ywk25TVt8jDzJ52AkNTXZouvbUiXiY8riFOvitQQvhCbWT"
 TOKENS = {}
 
 #Definiendo funciones para autenticacion en Twitter

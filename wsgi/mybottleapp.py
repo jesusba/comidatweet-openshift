@@ -47,32 +47,40 @@ def index():
 
 #Twiteando
 
-@get('/twittear')
+@get('/buscar')
 def get_verifier():
     TOKENS["verifier"] = request.query.oauth_verifier
     get_access_token(TOKENS)
-    return template('tweet.tpl')
+    return template('busqueda.tpl')
     
-@bottle.post('/twittear')
-def tweet_submit():
+    urlget = 'https://api.twitter.com/1.1/search/tweets.json?'
+    
+    rget = requests.get(url=url,
+				params={'q':'%23freebandnames',
+						'result_type':'mixed',
+						'count':'4'},
+				auth=oauth)
+    
+@bottle.post('/busqueda')
+def tweet_search():
     def get_verifier():
         TOKENS["verifier"] = bottle.request.query.oauth_verifier
         get_access_token(TOKENS)
-    texto = request.forms.get("tweet")
+    texto = request.forms.get("busqueda")
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
                    resource_owner_key=TOKENS["access_token"],
                    resource_owner_secret=TOKENS["access_token_secret"])
     
-    url = 'https://api.twitter.com/1.1/statuses/update.json'
+    urlpost = 'https://api.twitter.com/1.1/statuses/update.json'
 
-    r = requests.post(url=url,
+    rpost = requests.post(urlpost=url,
                       data={"status":texto},
                       auth=oauth)
     if r.status_code == 200:
-        return "<p>Tweet enviado correctamente.</p><form><input type='button' value='VOLVER ATRAS' name='Back2' onclick='history.back()' /></form>"
+        return "<p>Esto son los resultados para la búsqueda realizada.</p><form><input type='button' value='VOLVER ATRAS' name='Back2' onclick='history.back()' /></form>"
     else:
-        return "<p>Problema al enviar el tweet.</p><form><input type='button' value='VOLVER ATRAS' name='Back2' onclick='history.back()' /></form>"
+        return "<p>Problema al enviar la solicitud, por favor vuelva a intentarlo.</p><form><input type='button' value='VOLVER ATRAS' name='Back2' onclick='history.back()' /></form>"
 
 import os
 from bottle import TEMPLATE_PATH

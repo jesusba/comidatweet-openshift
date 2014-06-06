@@ -5,7 +5,7 @@
   <body>
     <p>Introduzca el nombre de un restaurante (incluyendo ubicacion sin comas):</p>
     <br/>
-    <form action="/busqueda" method="post">
+    <form action="/buscar" method="post">
       <input type="text" name="nombre" id="name" placeholder="Introduzca aqui el nombre" class="cform-text" size="25"/>
       <p><input type="submit" class="button" value="Enviar" /></p>
     </form>

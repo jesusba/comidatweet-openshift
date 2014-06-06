@@ -5,5 +5,6 @@
   <body>
     <p>Resultado de la busqueda para {{ texto }}</p>
     <br/>
-    </p><form><input type='button' value='VOLVER ATRAS' name='Back2' onclick='history.back()' /></form>"
-    r.text
+    </p><form><input type='button' value='VOLVER ATRAS' name='Back2' onclick='history.back()' /></form>
+  </body>
+</html>

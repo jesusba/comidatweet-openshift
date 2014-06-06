@@ -70,9 +70,7 @@ def tweet_search():
 							auth=oauth)
 							
     if r.status_code == 200:
-        return """<p>Esto son los resultados para la busqueda realizada.
-				</p><form><input type='button' value='VOLVER ATRAS' name='Back2' onclick='history.back()' /></form>"""
-		return r.text
+        return template('resultado.tpl')
 		
     else:
         return "<p>Problema al enviar la solicitud, por favor vuelva a intentarlo.</p><form><input type='button' value='VOLVER ATRAS' name='Back2' onclick='history.back()' /></form>"

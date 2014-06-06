@@ -45,7 +45,7 @@ def index():
     authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
     return template('index.tpl', authorize_url=authorize_url)
 
-#Twiteando
+#Buscando
 
 @get('/buscar')
 def get_verifier():
@@ -53,7 +53,7 @@ def get_verifier():
     get_access_token(TOKENS)
     return template('busqueda.tpl')
     
-@bottle.post('/busqueda')
+@post('/buscar')
 def tweet_search():
     texto = request.forms.get("nombre")
     oauth = OAuth1(CONSUMER_KEY,

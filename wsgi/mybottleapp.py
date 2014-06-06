@@ -55,9 +55,6 @@ def get_verifier():
     
 @bottle.post('/busqueda')
 def tweet_search():
-    def get_verifier():
-        TOKENS["verifier"] = bottle.request.query.oauth_verifier
-        get_access_token(TOKENS)
     texto = request.forms.get("nombre")
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
@@ -66,7 +63,7 @@ def tweet_search():
     
     url = 'https://api.twitter.com/1.1/search/tweets.json?'
     
-    r = requests.get(url=url,
+    r = requests.post(url=url,
 					params={'q':texto,
 							'result_type':'mixed',
 							'count':'4'},

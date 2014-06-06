@@ -51,7 +51,7 @@ def index():
 def get_verifier():
     TOKENS["verifier"] = request.query.oauth_verifier
     get_access_token(TOKENS)
-    return template('busqueda.tpl')
+    return template('buscar.tpl')
     
 @post('/buscar')
 def tweet_search():

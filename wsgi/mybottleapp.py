@@ -63,8 +63,9 @@ def tweet_search():
     
     url = 'https://api.twitter.com/1.1/search/tweets.json?'
     
+    nombre2 = nombre.replace(" ","+")
     r = requests.post(url=url,
-					params={'q':texto,
+					params={'q':nombre2,
 							'result_type':'mixed',
 							'count':'4'},
 							auth=oauth)

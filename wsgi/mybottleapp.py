@@ -3,7 +3,7 @@ import requests
 import json
 from requests_oauthlib import OAuth1
 from urlparse import parse_qs
-from bottle import get, post, template, run, request, route, default_app
+from bottle import get, post, template, run, request, route, default_app, TEMPLATE_PATH, error
 
 REQUEST_TOKEN_URL = "https://api.twitter.com/oauth/request_token"
 AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate?oauth_token="
@@ -47,6 +47,10 @@ def index():
 
 #Buscando
 
+@error(404)
+def error404(error):
+	return "ERROR 404: Pagina no encontrada"
+
 @get('/buscar')
 def get_verifier():
     TOKENS["verifier"] = request.query.oauth_verifier
@@ -75,10 +79,6 @@ def tweet_search():
     else:
         return "<p>Problema al enviar la solicitud, por favor vuelva a intentarlo.</p><form><input type='button' value='VOLVER ATRAS' name='Back2' onclick='history.back()' /></form>"
 
-@error(404)
-def error404(error):
-	return "ERROR 404: Página no encontrada"
-	
 import os
 from bottle import TEMPLATE_PATH
 

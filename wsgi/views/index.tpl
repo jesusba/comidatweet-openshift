@@ -8,7 +8,7 @@
 	<h2>¡Bienvenido a ComidaTweet!</h2> 
 <div>
 	<h3>
-		<img alt="" class="app-icon" src="http://blog.cityeats.com/new-york/files/2013/01/TwitterFedLogo_300x199.png" title="ComidaTweet" width='180' height='120'/>
+		<img alt="" class="app-icon" src="http://www.marketingdirecto.com/wp-content/uploads/2013/03/twitter-comida.jpg" title="ComidaTweet" width='180' height='120'/>
 	</h3>
 		<p><strong>Acerca de esta aplicación</strong></p>
 		<p>Muestra los restaurantes de comida rápida más twitteados a nivel nacional.</p>

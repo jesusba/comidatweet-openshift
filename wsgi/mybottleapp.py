@@ -75,6 +75,10 @@ def tweet_search():
     else:
         return "<p>Problema al enviar la solicitud, por favor vuelva a intentarlo.</p><form><input type='button' value='VOLVER ATRAS' name='Back2' onclick='history.back()' /></form>"
 
+@error(404)
+def error404(error):
+	return "ERROR 404: Página no encontrada"
+	
 import os
 from bottle import TEMPLATE_PATH
 

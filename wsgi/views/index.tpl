@@ -2,16 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>ComidaTweet</title>
+	<title>InfluenceWord</title>
 </head>
 <body>
-	<h2>¡Bienvenido a ComidaTweet!</h2> 
+	<h2>¡Bienvenido a InfluenceWord!</h2> 
 <div>
 	<h3>
 		<img alt="" class="app-icon" src="http://blog.cityeats.com/new-york/files/2013/01/TwitterFedLogo_300x199.png" title="ComidaTweet" width='180' height='120'/>
 	</h3>
 		<p><strong>Acerca de esta aplicación</strong></p>
-		<p>Muestra los restaurantes de comida rápida más twitteados a nivel nacional.</p>
+		<p>Muestra la influencia en Twitter que poseen las palabras introducidas por el usuario autenticado.</p>
 </div>
 <div>
 	<p class="tip">En cualquier momento, puedes revocar el acceso a cualquier aplicación desde la <a href="https://twitter.com/settings/applications">pestaña de aplicaciones</a> de tu página de configuración.</p>

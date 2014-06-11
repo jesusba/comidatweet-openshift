@@ -70,7 +70,7 @@ def tweet_result():
 		autor = json.loads(r.text)['results'][0]['from_user']
 		fecha = json.loads(r.text)['results'][0]['created_at']
 					
-		return template('resultado.tpl', palabra=palabra, contenido=contenido, autor=autor, avatar=avatar, fecha=fecha)
+		return template('resultado', palabra=palabra, contenido=contenido, autor=autor, avatar=avatar, fecha=fecha)
         
 import os
 from bottle import TEMPLATE_PATH

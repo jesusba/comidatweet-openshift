@@ -1,5 +1,5 @@
 
-from bottle import default_app, get, post, template, request, static_file, response, error
+from bottle import default_app, get, post, template, request, static_file, response
 import requests
 from requests_oauthlib import OAuth1
 from urlparse import parse_qs
@@ -16,6 +16,7 @@ TOKENS = {}
 #Definiendo funciones para autenticacion en Twitter
 
 #Acceso a la API mediante parametros del cliente
+
 def get_request_token():
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
@@ -44,26 +45,20 @@ def index():
     authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
     return template('buscar.tpl', authorize_url=authorize_url)
 
-#Buscando
-
-@error(404)
-def error404(error):
-	return "ERROR 404: Pagina no encontrada"
-
 @get('/buscar')
 def get_verifier():
     TOKENS["verifier"] = request.query.oauth_verifier
     get_access_token(TOKENS)
-    return template('buscar.tpl')
-    
+    return template('busqueda')
+
 @post('/buscar')
-def tweet_search():
-	texto = request.forms.get("nombre")
+def tweet_submit():
+    texto = request.forms.get("nombre")
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
                    resource_owner_key=TOKENS["access_token"],
-                   resource_owner_secret=TOKENS["access_token_secret"])
-    
+                   resource_owner_secret=TOKENS["access_token_secret"])  
+                    
     url = 'https://api.twitter.com/1.1/search/tweets.json'
     
     r = requests.post(url=url,

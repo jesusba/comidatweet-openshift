@@ -3,7 +3,7 @@ import requests
 import json
 from requests_oauthlib import OAuth1
 from urlparse import parse_qs
-from bottle import from bottle import default_app, get, post, template, request, static_file, response, error
+from bottle import get, post, template, run, request, route, default_app, error
 
 REQUEST_TOKEN_URL = "https://api.twitter.com/oauth/request_token"
 AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate?oauth_token="

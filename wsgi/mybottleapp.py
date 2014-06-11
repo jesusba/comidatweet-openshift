@@ -3,7 +3,7 @@ import requests
 import json
 from requests_oauthlib import OAuth1
 from urlparse import parse_qs
-from bottle import get, post, template, run, request, route, default_app, TEMPLATE_PATH, error
+from bottle import from bottle import default_app, get, post, template, request, static_file, response, error
 
 REQUEST_TOKEN_URL = "https://api.twitter.com/oauth/request_token"
 AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate?oauth_token="
@@ -56,7 +56,7 @@ def error404(error):
 def get_verifier():
     TOKENS["verifier"] = request.query.oauth_verifier
     get_access_token(TOKENS)
-    return template('buscar.tpl')
+    return template('buscar')
     
 @post('/buscar')
 def tweet_search():
@@ -66,10 +66,10 @@ def tweet_search():
                    resource_owner_key=TOKENS["access_token"],
                    resource_owner_secret=TOKENS["access_token_secret"])
     
-    url = 'https://api.twitter.com/1.1/search/tweets.json?'
+    url = 'https://api.twitter.com/1.1/search/tweets.json'
     
     r = requests.post(url=url,
-					data={'q':nombre,
+					data={'q':texto,
 							'result_type':'mixed',
 							'count':'4'},
 							auth=oauth)

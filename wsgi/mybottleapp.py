@@ -60,7 +60,7 @@ def get_verifier():
     
 @post('/buscar')
 def tweet_search():
-    texto = request.forms.get("buscar")
+    texto = request.forms.get("nombre")
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
                    resource_owner_key=TOKENS["access_token"],
@@ -69,7 +69,7 @@ def tweet_search():
     url = 'https://api.twitter.com/1.1/search/tweets.json?'
     
     r = requests.post(url=url,
-					data={'q':name,
+					data={'q':nombre,
 							'result_type':'mixed',
 							'count':'4'},
 							auth=oauth)

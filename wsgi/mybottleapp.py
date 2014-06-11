@@ -43,13 +43,13 @@ def get_access_token(TOKENS):
 def index():
     get_request_token()
     authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
-    return template('buscar.tpl', authorize_url=authorize_url)
+    return template('index.tpl', authorize_url=authorize_url)
 
 @get('/buscar')
 def get_verifier():
     TOKENS["verifier"] = request.query.oauth_verifier
     get_access_token(TOKENS)
-    return template('busqueda')
+    return template('buscar')
 
 @post('/buscar')
 def tweet_submit():

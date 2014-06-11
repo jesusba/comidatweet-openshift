@@ -66,7 +66,7 @@ def tweet_submit():
 							'result_type':'mixed',
 							'count':'4'})
 							
-	palabra= json.loads(r.text)['query']
+	palabra = json.loads(r.text)['query']
     contenido = json.loads(r.text)['results'][0]['text']
     avatar = json.loads(r.text)['results'][0]['profile_image_url']
     autor = json.loads(r.text)['results'][0]['from_user']

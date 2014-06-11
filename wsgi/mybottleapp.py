@@ -1,5 +1,5 @@
 
-from bottle import default_app, get, post, template, request, static_file, response
+from bottle import default_app, get, post, template, request, static_file, response, error
 import requests
 from requests_oauthlib import OAuth1
 from urlparse import parse_qs
@@ -20,13 +20,11 @@ def get_request_token():
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
     )
-    
     r = requests.post(url=REQUEST_TOKEN_URL, auth=oauth)
     credentials = parse_qs(r.content)
     TOKENS["request_token"] = credentials.get('oauth_token')[0]
     TOKENS["request_token_secret"] = credentials.get('oauth_token_secret')[0]
 
-#Token de solicitud
 def get_access_token(TOKENS):
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
@@ -56,7 +54,7 @@ def error404(error):
 def get_verifier():
     TOKENS["verifier"] = request.query.oauth_verifier
     get_access_token(TOKENS)
-    return template('buscar.tpl')
+    return template('buscar')
     
 @post('/buscar')
 def tweet_search():

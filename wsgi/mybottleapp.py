@@ -69,7 +69,7 @@ def tweet_search():
     url = 'https://api.twitter.com/1.1/search/tweets.json?'
     
     r = requests.post(url=url,
-					data={'q':nombre,
+					data={'q':name,
 							'result_type':'mixed',
 							'count':'4'},
 							auth=oauth)

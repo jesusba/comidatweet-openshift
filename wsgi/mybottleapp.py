@@ -60,7 +60,7 @@ def get_verifier():
     
 @post('/buscar')
 def tweet_search():
-    texto = request.forms.get("name")
+    texto = request.forms.get("buscar")
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
                    resource_owner_key=TOKENS["access_token"],

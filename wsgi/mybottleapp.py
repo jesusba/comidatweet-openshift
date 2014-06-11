@@ -64,8 +64,7 @@ def tweet_submit():
     r = requests.post(url=url,
 					data={'q':texto,
 							'result_type':'mixed',
-							'count':'4'},
-							auth=oauth)
+							'count':'4'})
 							
 	palabra= json.loads(r.text)['query']
     contenido = json.loads(r.text)['results'][0]['text']

@@ -67,12 +67,14 @@ def tweet_submit():
 							'count':'4'},
 							auth=oauth)
 							
-    if r.status_code == 200:
-        return template('resultado.tpl')
-		
-    else:
-        return "<p>Problema al enviar la solicitud, por favor vuelva a intentarlo.</p><form><input type='button' value='VOLVER ATRAS' name='Back2' onclick='history.back()' /></form>"
-
+	palabra= json.loads(r.text)['query']
+    contenido = json.loads(r.text)['results'][0]['text']
+    avatar = json.loads(r.text)['results'][0]['profile_image_url']
+    autor = json.loads(r.text)['results'][0]['from_user']
+    fecha = json.loads(r.text)['results'][0]['created_at']
+				
+    return template('resultado.tpl')
+        
 import os
 from bottle import TEMPLATE_PATH
 

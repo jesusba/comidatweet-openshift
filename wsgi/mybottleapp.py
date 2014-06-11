@@ -52,25 +52,24 @@ def get_verifier():
     return template('buscar')
 
 @post('/buscar')
-def tweet_result():
-	def tweet_search():
-		texto = request.forms.get("nombre")
-		oauth = OAuth1(CONSUMER_KEY,
-					client_secret=CONSUMER_SECRET,
-					resource_owner_key=TOKENS["access_token"],
-					resource_owner_secret=TOKENS["access_token_secret"])  
+def tweet_search():
+	texto = request.forms.get("nombre")
+	oauth = OAuth1(CONSUMER_KEY,
+				client_secret=CONSUMER_SECRET,
+				resource_owner_key=TOKENS["access_token"],
+				resource_owner_secret=TOKENS["access_token_secret"])  
                     
-		url = 'https://api.twitter.com/1.1/search/tweets.json'
+	url = 'https://api.twitter.com/1.1/search/tweets.json'
     
-		r = requests.post(url=url,data={'q':texto,'result_type':'mixed','count':'4'})
-							
-		palabra = json.loads(r.text)['query']
-		contenido = json.loads(r.text)['results'][0]['text']
-		avatar = json.loads(r.text)['results'][0]['profile_image_url']
-		autor = json.loads(r.text)['results'][0]['from_user']
-		fecha = json.loads(r.text)['results'][0]['created_at']
+	r = requests.post(url=url,data={'q':texto,'result_type':'mixed','count':'4'})
+								
+	palabra = json.loads(r.text)['query']
+	contenido = json.loads(r.text)['results'][0]['text']
+	avatar = json.loads(r.text)['results'][0]['profile_image_url']
+	autor = json.loads(r.text)['results'][0]['from_user']
+	fecha = json.loads(r.text)['results'][0]['created_at']
 					
-		return template('resultado', palabra=palabra, contenido=contenido, autor=autor, avatar=avatar, fecha=fecha)
+	return template('resultado', palabra=palabra, contenido=contenido, autor=autor, avatar=avatar, fecha=fecha)
         
 import os
 from bottle import TEMPLATE_PATH

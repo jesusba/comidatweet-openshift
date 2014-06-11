@@ -54,7 +54,7 @@ def error404(error):
 def get_verifier():
     TOKENS["verifier"] = request.query.oauth_verifier
     get_access_token(TOKENS)
-    return template('buscar')
+    return template('buscar.tpl')
     
 @post('/buscar')
 def tweet_search():
@@ -64,7 +64,6 @@ def tweet_search():
                    resource_owner_key=TOKENS["access_token"],
                    resource_owner_secret=TOKENS["access_token_secret"])
     
-  
     url = 'https://api.twitter.com/1.1/search/tweets.json'
     
     r = requests.post(url=url,

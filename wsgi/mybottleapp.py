@@ -58,18 +58,15 @@ def get_verifier():
     get_access_token(TOKENS)
     return template('buscar.tpl')
     
-@bottle.route('/buscar', method='POST')
+@post('/buscar')
 def tweet_search():
-	def get_verifier():
-		TOKENS["verifier"] = bottle.request.query.oauth_verifier
-        get_access_token(TOKENS)
+	texto = request.forms.get("nombre")
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
                    resource_owner_key=TOKENS["access_token"],
                    resource_owner_secret=TOKENS["access_token_secret"])
-   
-    texto = request.forms.get("nombre")
     
+  
     url = 'https://api.twitter.com/1.1/search/tweets.json'
     
     r = requests.post(url=url,

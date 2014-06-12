@@ -60,9 +60,9 @@ def tweet_search():
 				resource_owner_key=TOKENS["access_token"],
 				resource_owner_secret=TOKENS["access_token_secret"])  
                     
-	url = 'https://api.twitter.com/1.1/search/tweets.json'
+	url = "https://api.twitter.com/1.1/search/tweets.json"
     
-	r = requests.post(url=url,data={'q':texto,'result_type':'mixed','count':'4'},auth=oauth)
+	r = requests.get(url=url,params={"q":texto, "lang":"es", "result_type":"mixed", "count":"4"},auth=oauth)
 								
 	palabra = json.loads(r.text)['query']
 	contenido = json.loads(r.text)['results'][0]['text']

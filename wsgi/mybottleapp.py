@@ -49,7 +49,7 @@ def index():
 def get_verifier():
     TOKENS["verifier"] = request.query.oauth_verifier
     get_access_token(TOKENS)
-    return template('buscar')
+    return TOKENS["access_token"],TOKENS["access_token_secret"]
 
 @post('/buscar')
 def tweet_search():

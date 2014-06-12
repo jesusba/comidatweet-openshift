@@ -69,16 +69,18 @@ def tweet_search():
 	listaavatar = []
 	listaautor = []
 	listafecha = []
-	for texto in textop:
-		palabra = json.loads(r.text)['statuses'][0]['query']
-		contenido = json.loads(r.text)['statuses'][0]['text']
-		avatar = json.loads(r.text)['statuses'][0]['user']['profile_image_url']
-		autor = json.loads(r.text)['statuses'][0]['user']['name']
-		fecha = json.loads(r.text)['statuses'][0]['created_at']
+	
+	for textop in texto:
+		dicc = json.loads(r.text)
+		palabra = dicc['statuses'][0]['query']
 		listapalabra.append(palabra)
+		contenido = dicc['statuses'][0]['text']
 		listacontenido.append(contenido)
+		avatar = dicc['statuses'][0]['user']['profile_image_url']
 		listaavatar.append(avatar)
+		autor = dicc['statuses'][0]['user']['name']
 		listaautor.append(autor)
+		fecha = dicc['statuses'][0]['created_at']
 		listafecha.append(fecha)
 		
 		return template('resultado', palabra=listapalabra, contenido=listacontenido, autor=listaautor, avatar=listaavatar, fecha=listafecha)

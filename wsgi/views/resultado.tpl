@@ -5,15 +5,15 @@
   <body>
     <p><h3>ComidaTweet</h3></p>
     <p><img alt="" class="app-icon" src="http://www.carat.co.uk/uploads/133597838026875/resize_then_crop_540_350.jpg" title="ComidaTweet" width="200" height="200"/></p>
-    <h3>Resultado de la busqueda para {{ texto }}</h3>      
+    <h3>Resultado de la busqueda para </h3>      
     <p>
-		<br>Palabra buscada: {{ palabra }}</br>
-		<br>Contenido: {{ contenido }}</br>
-		<br>Fecha: {{ fecha }}</br>
-		<br>Autor: {{ autor }}</br>
+		<br>Palabra buscada:</br>
+		<br>Contenido: </br>
+		<br>Fecha: </br>
+		<br>Autor: </br>
 		<br>Resultado: {{ resultado }}</br>
 	</p>
-    <p><img src="{{avatar}}"/></p>
+    <p><img src="afa"/></p>
     <form>
 		<input type='button' value='VOLVER ATRAS' name='Back2' onclick='history.back()'/>
 	</form>

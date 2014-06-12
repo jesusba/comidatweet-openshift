@@ -12,7 +12,7 @@
 		<br>Fecha: {{ fecha }}</br>
 		<br>Autor: {{ autor }}</br>
 	</p>
-    <p><img src="{{ avatar }}"/></p>
+    <p><img src="{{avatar}}"/></p>
     <form>
 		<input type='button' value='VOLVER ATRAS' name='Back2' onclick='history.back()'/>
 	</form>

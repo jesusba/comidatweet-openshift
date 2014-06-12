@@ -5,7 +5,7 @@
   <body>
     <p><h3>ComidaTweet</h3></p>
     {% set contador = 0 %}
-	{% for textop in textop %}
+	{% for textop in texto %}
     <p><img alt="" class="app-icon" src="http://www.carat.co.uk/uploads/133597838026875/resize_then_crop_540_350.jpg" title="ComidaTweet" width="200" height="200"/></p>
     <h3>Resultado de la busqueda</h3>      
 		<p>Palabra buscada: {{palabra}}</p>

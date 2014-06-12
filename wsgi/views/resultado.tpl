@@ -11,6 +11,7 @@
 		<br>Contenido: {{ contenido }}</br>
 		<br>Fecha: {{ fecha }}</br>
 		<br>Autor: {{ autor }}</br>
+		<br>Resultado: {{ resultado }}</br>
 	</p>
     <p><img src="{{avatar}}"/></p>
     <form>

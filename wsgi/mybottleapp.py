@@ -64,27 +64,27 @@ def tweet_search():
     
 	r = requests.get(url=url,params={"q":texto, "lang":"es", "result_type":"mixed", "count":"4"},auth=oauth)
 	
-	listapalabra = []
-	listacontenido = []
-	listaavatar = []
-	listaautor = []
-	listafecha = []
+	#listapalabra = []
+	#listacontenido = []
+	#listaavatar = []
+	#listaautor = []
+	#listafecha = []
 	
-	for textop in texto:
-		dicc = json.loads(r.text)
-		palabra = dicc['statuses'][0]['query']
-		listapalabra.append(palabra)
-		contenido = dicc['statuses'][0]['text']
-		listacontenido.append(contenido)
-		avatar = dicc['statuses'][0]['user']['profile_image_url']
-		listaavatar.append(avatar)
-		autor = dicc['statuses'][0]['user']['name']
-		listaautor.append(autor)
-		fecha = dicc['statuses'][0]['created_at']
-		listafecha.append(fecha)
+	#for textop in texto:
+	dicc = json.loads(r.text)
+		#palabra = dicc['statuses'][0]['query']
+		#listapalabra.append(palabra)
+		#contenido = dicc['statuses'][0]['text']
+		#listacontenido.append(contenido)
+		#avatar = dicc['statuses'][0]['user']['profile_image_url']
+		#listaavatar.append(avatar)
+		#autor = dicc['statuses'][0]['user']['name']
+		#listaautor.append(autor)
+		#fecha = dicc['statuses'][0]['created_at']
+		#listafecha.append(fecha)
 		
-		return template('resultado', palabra=listapalabra, contenido=listacontenido, autor=listaautor, avatar=listaavatar, fecha=listafecha)
-        
+		#return template('resultado', palabra=listapalabra, contenido=listacontenido, autor=listaautor, avatar=listaavatar, fecha=listafecha)
+     return template('resultado', palabra=dicc)
 import os
 from bottle import TEMPLATE_PATH
 

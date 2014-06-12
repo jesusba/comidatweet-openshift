@@ -63,14 +63,15 @@ def tweet_search():
 	url = "https://api.twitter.com/1.1/search/tweets.json"
     
 	r = requests.get(url=url,params={"q":texto, "lang":"es", "result_type":"mixed", "count":"4"},auth=oauth)
-								
-	palabra = json.loads(r.text)['statuses'][0]['query']
-	contenido = json.loads(r.text)['statuses'][0]['text']
-	avatar = json.loads(r.text)['statuses'][0]['user']['profile_image_url']
-	autor = json.loads(r.text)['statuses'][0]['user']['name']
-	fecha = json.loads(r.text)['statuses'][0]['created_at']
+	
+	for texto in textop:
+		palabra = json.loads(r.text)['statuses'][0]['query']
+		contenido = json.loads(r.text)['statuses'][0]['text']
+		avatar = json.loads(r.text)['statuses'][0]['user']['profile_image_url']
+		autor = json.loads(r.text)['statuses'][0]['user']['name']
+		fecha = json.loads(r.text)['statuses'][0]['created_at']
 					
-	return template('resultado', palabra=palabra, contenido=contenido, autor=autor, avatar=avatar, fecha=fecha)
+		return template('resultado', textop=texto, palabra=palabra, contenido=contenido, autor=autor, avatar=avatar, fecha=fecha)
         
 import os
 from bottle import TEMPLATE_PATH

@@ -4,16 +4,17 @@
   </head>
   <body>
     <p><h3>ComidaTweet</h3></p>
-    <p><img alt="" class="app-icon" src="http://www.marketingdirecto.com/wp-content/uploads/2013/03/twitter-comida.jpg" title="ComidaTweet" width="200" height="200"/></p>
-    <h3>Resultado de la busqueda para </h3>      
-    <p>
-		<br>Palabra buscada:</br>
-		<br>Contenido: </br>
-		<br>Fecha: </br>
-		<br>Autor: </br>
-		<br>Resultado: {{ resultado }}</br>
-	</p>
-    <p><img src="{{avatar}}"/></p>
+    {% set contador = 0 %}
+	{% for textop in textop %}
+    <p><img alt="" class="app-icon" src="http://www.carat.co.uk/uploads/133597838026875/resize_then_crop_540_350.jpg" title="ComidaTweet" width="200" height="200"/></p>
+    <h3>Resultado de la busqueda</h3>      
+		<p>Palabra buscada: {{palabra}}</p>
+		<p>Contenido: {{contenido}}</p>
+		<p>Fecha: {{fecha}}</p>
+		<p>Autor: {{autor}}</p>
+		<p><img src="{{avatar}}"/></p>
+	{% set contador = contador + 1 %}
+	{% endfor %}
     <form>
 		<input type='button' value='VOLVER ATRAS' name='Back2' onclick='history.back()'/>
 	</form>

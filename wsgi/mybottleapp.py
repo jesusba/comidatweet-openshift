@@ -57,8 +57,8 @@ def tweet_search():
 	
 	oauth = OAuth1(CONSUMER_KEY,
 				client_secret=CONSUMER_SECRET,
-				resource_owner_key=TOKENS["access_token"],
-				resource_owner_secret=TOKENS["access_token_secret"])  
+				resource_owner_key="access_token",
+				resource_owner_secret="access_token_secret")  
                     
 	url = "https://api.twitter.com/1.1/search/tweets.json"
     

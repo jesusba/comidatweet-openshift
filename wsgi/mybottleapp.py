@@ -61,7 +61,7 @@ def tweet_search():
                     
 	url = "https://api.twitter.com/1.1/search/tweets.json"
     
-	r = requests.get(url=url,params={"q":texto, "lang":"es", "result_type":"mixed", "count":"4"},auth=oauth)
+	r = requests.get(url=url,params={"q":texto, "lang":"es", "geocode":"39.737583,-4.2851364,1176137mi", "result_type":"mixed", "count":"4"},auth=oauth)
 	
 	listapalabra = []
 	listacontenido = []

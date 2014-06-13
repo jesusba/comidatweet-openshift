@@ -63,7 +63,6 @@ def tweet_search():
     
 	r = requests.get(url=url,params={"q":texto, "lang":"es", "geocode":"39.737583,-4.2851364,1176137mi", "result_type":"mixed", "count":"4"},auth=oauth)
 	
-	listapalabra = []
 	listacontenido = []
 	listaavatar = []
 	listaautor = []
@@ -71,8 +70,6 @@ def tweet_search():
 	
 	for textop in texto:
 		dicc = json.loads(r.text)
-		palabra = dicc['statuses']['query']
-		listapalabra.append(palabra)
 		contenido = dicc['statuses']['text']
 		listacontenido.append(contenido)
 		avatar = dicc['statuses']['user']['profile_image_url']

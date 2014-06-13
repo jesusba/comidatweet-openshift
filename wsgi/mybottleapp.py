@@ -53,7 +53,8 @@ def get_verifier():
 
 @post('/buscar')
 def tweet_search():
-	texto = request.forms.get("nombre")
+	TOKENS["verifier"] = bottle.request.query.oauth_verifier
+    get_access_token(TOKENS)
 	oauth = OAuth1(CONSUMER_KEY,
 				client_secret=CONSUMER_SECRET,
 				resource_owner_key="access_token",
@@ -61,7 +62,8 @@ def tweet_search():
                     
 	url = "https://api.twitter.com/1.1/search/tweets.json"
     
-	r = requests.get(url=url,params={"q":texto, "lang":"es", "geocode":"39.737583,-4.2851364,1176137mi", "result_type":"mixed", "count":"4"},auth=oauth)
+    texto = request.forms.get("nombre")
+	r = requests.get(url=url,params={"q":texto, "lang":"es", "geocode":"39.737583,-4.2851364,1176137mi", "result_type":"mixed", "count":"10"},auth=oauth)
 	
 	#listacontenido = []
 	#listaavatar = []

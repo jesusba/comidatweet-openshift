@@ -71,18 +71,18 @@ def tweet_search():
 	
 	for textop in texto:
 		dicc = json.loads(r.text)
-		palabra = dicc['statuses'][0]['query']
+		palabra = dicc['statuses']['query']
 		listapalabra.append(palabra)
-		contenido = dicc['statuses'][0]['text']
+		contenido = dicc['statuses']['text']
 		listacontenido.append(contenido)
-		avatar = dicc['statuses'][0]['user']['profile_image_url']
+		avatar = dicc['statuses']['user']['profile_image_url']
 		listaavatar.append(avatar)
-		autor = dicc['statuses'][0]['user']['name']
+		autor = dicc['statuses']['user']['name']
 		listaautor.append(autor)
-		fecha = dicc['statuses'][0]['created_at']
+		fecha = dicc['statuses']['created_at']
 		listafecha.append(fecha)
 		
-		return template('resultado', palabra=listapalabra, contenido=listacontenido, autor=listaautor, avatar=listaavatar, fecha=listafecha)
+		return template('resultado', textop = texto, palabra=listapalabra, contenido=listacontenido, autor=listaautor, avatar=listaavatar, fecha=listafecha)
         
 import os
 from bottle import TEMPLATE_PATH

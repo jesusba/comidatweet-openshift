@@ -49,15 +49,15 @@ def index():
 def get_verifier():
     TOKENS["verifier"] = request.query.oauth_verifier
     get_access_token(TOKENS)
-    oauth = OAuth1(CONSUMER_KEY,
-				client_secret=CONSUMER_SECRET,
-				resource_owner_key=TOKENS("access_token"),
-				resource_owner_secret=TOKENS("access_token_secret")) 
     return template('buscar')
 
-@post('/buscar')
-def tweet_search():
-	texto = request.forms.get("nombre") 
+@post('/twittear')
+def tweet_submit():
+    texto = request.forms.get("nombre")
+    oauth = OAuth1(CONSUMER_KEY,
+                   client_secret=CONSUMER_SECRET,
+                   resource_owner_key="access_token",
+                   resource_owner_secret="access_token_secret")
                     
 	url = "https://api.twitter.com/1.1/search/tweets.json"
     r = requests.get(url=url,params={"q":texto, "lang":"es", "geocode":"39.737583,-4.2851364,1176137mi", "result_type":"mixed", "count":"10"},auth=oauth)

@@ -43,7 +43,7 @@ def get_access_token(TOKENS):
 def index():
     get_request_token()
     authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
-    return template('index.tpl', authorize_url=authorize_url)
+    return template('index', authorize_url=authorize_url)
 
 @get('/buscar')
 def get_verifier():
@@ -51,7 +51,7 @@ def get_verifier():
     get_access_token(TOKENS)
     return template('buscar')
 
-@post('/twittear')
+@post('/buscar')
 def tweet_submit():
     texto = request.forms.get("nombre")
     oauth = OAuth1(CONSUMER_KEY,
@@ -60,6 +60,7 @@ def tweet_submit():
                    resource_owner_secret="access_token_secret")
                     
 	url = "https://api.twitter.com/1.1/search/tweets.json"
+	
     r = requests.get(url=url,params={"q":texto, "lang":"es", "geocode":"39.737583,-4.2851364,1176137mi", "result_type":"mixed", "count":"10"},auth=oauth)
 	
 	listacontenido = []

@@ -43,7 +43,7 @@ def get_access_token(TOKENS):
 def index():
     get_request_token()
     authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
-    return template('index', authorize_url=authorize_url)
+    return template('index.tpl', authorize_url=authorize_url)
 
 @get('/buscar')
 def get_verifier():
@@ -52,12 +52,13 @@ def get_verifier():
     return template('buscar')
 
 @post('/buscar')
-def tweet_submit():
-    texto = request.forms.get("nombre")
-    oauth = OAuth1(CONSUMER_KEY,
-                   client_secret=CONSUMER_SECRET,
-                   resource_owner_key="access_token",
-                   resource_owner_secret="access_token_secret")
+def tweet_search():
+	texto = request.forms.get("nombre")
+
+	oauth = OAuth1(CONSUMER_KEY,
+				client_secret=CONSUMER_SECRET,
+				resource_owner_key="access_token",
+				resource_owner_secret="access_token_secret")  
                     
 	url = "https://api.twitter.com/1.1/search/tweets.json"
 	

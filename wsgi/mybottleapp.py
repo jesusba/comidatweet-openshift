@@ -52,35 +52,40 @@ def get_verifier():
     oauth = OAuth1(CONSUMER_KEY,
 				client_secret=CONSUMER_SECRET,
 				resource_owner_key="access_token",
-				resource_owner_secret="access_token_secret") 
-				
+				resource_owner_secret="access_token_secret")  
+                    
     return template('buscar')
 
 @post('/buscar')
 def tweet_search():
-	texto = request.forms.get("nombre") 
+	texto = request.forms.get("nombre")
+	oauth = OAuth1(CONSUMER_KEY,
+				client_secret=CONSUMER_SECRET,
+				resource_owner_key="access_token",
+				resource_owner_secret="access_token_secret")  
                     
 	url = "https://api.twitter.com/1.1/search/tweets.json"
     
 	r = requests.get(url=url,params={"q":texto, "lang":"es", "geocode":"39.737583,-4.2851364,1176137mi", "result_type":"mixed", "count":"10"},auth=oauth)
-	
-	listacontenido = []
-	listaavatar = []
-	listaautor = []
-	listafecha = []
-	
-	for textop in texto:
-		dicc = json.loads(r.text)
-		contenido = dicc['statuses']['text']
-		listacontenido.append(contenido)
-		avatar = dicc['statuses']['user']['profile_image_url']
-		listaavatar.append(avatar)
-		autor = dicc['statuses']['user']['name']
-		listaautor.append(autor)
-		fecha = dicc['statuses']['created_at']
-		listafecha.append(fecha)
-		
-	return template('resultado1', textop = texto, palabra=listapalabra, contenido=listacontenido, autor=listaautor, avatar=listaavatar, fecha=listafecha)
+
+	#listacontenido = []
+	#listaavatar = []
+	#listaautor = []
+	#listafecha = []
+
+	#for textop in texto:
+		#dicc = json.loads(r.text)
+		#contenido = dicc['statuses']['text']
+		#listacontenido.append(contenido)
+		#avatar = dicc['statuses']['user']['profile_image_url']
+		#listaavatar.append(avatar)
+		#autor = dicc['statuses']['user']['name']
+		#listaautor.append(autor)
+		#fecha = dicc['statuses']['created_at']
+		#listafecha.append(fecha)
+
+	return r.text
+		#textop = texto, palabra=listapalabra, contenido=listacontenido, autor=listaautor, avatar=listaavatar, fecha=listafecha)
         
 import os
 from bottle import TEMPLATE_PATH

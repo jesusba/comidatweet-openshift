@@ -52,7 +52,7 @@ def get_verifier():
     return template('buscar')
 
 @post('/buscar')
-def tweet_submit():
+def tweet_search():
     texto = request.forms.get("nombre")
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,

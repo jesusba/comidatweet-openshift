@@ -53,6 +53,7 @@ def get_verifier():
 
 @post('/buscar')
 def tweet_search():
+    key = 'AIzaSyBqoZ7ETyXk-18M7yoz2DFPN7eB6_4e3sk'
     texto = request.forms.get("nombre")
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
@@ -61,7 +62,8 @@ def tweet_search():
 
 	url = "https://api.twitter.com/1.1/search/tweets.json"
     
-	r = requests.get(url=url,params={"q":texto, "lang":"es", "geocode":"39.737583,-4.2851364,1176137mi", "result_type":"mixed", "count":"10"},auth=oauth)
+    texto2 = texto.replace(' ','%20')
+	r = requests.get(url=url,params={"q":texto2, "lang":"es", "geocode":"39.737583,-4.2851364,1176137mi", "result_type":"mixed", "count":"10"},auth=oauth)
 
 	#listacontenido = []
 	#listaavatar = []
@@ -78,10 +80,27 @@ def tweet_search():
 		#listaautor.append(autor)
 		#fecha = dicc['statuses']['created_at']
 		#listafecha.append(fecha)
-
+	mapa = 'https://maps.googleapis.com/maps/api/place/textsearch/json'
+	
+	obtener=requests.get(url=mapa,params={'origin':origin,
+	
 	return r.text
 		#textop = texto, palabra=listapalabra, contenido=listacontenido, autor=listaautor, avatar=listaavatar, fecha=listafecha)
-        
+
+def tweet_search1():
+    textoubi = request.forms.get("nombre1")
+    oauth = OAuth1(CONSUMER_KEY,
+                   client_secret=CONSUMER_SECRET,
+                   resource_owner_key="access_token",
+                   resource_owner_secret="access_token_secret")                   
+
+	url = "https://api.twitter.com/1.1/search/tweets.json"
+
+    texto2ubi = textoubi.replace(' ','%20')
+	r = requests.get(url=url,params={"q":texto2ubi, "lang":"es", "geocode":"39.737583,-4.2851364,1176137mi", "result_type":"mixed", "count":"10"},auth=oauth)
+    
+    return r.text    
+    
 import os
 from bottle import TEMPLATE_PATH
 

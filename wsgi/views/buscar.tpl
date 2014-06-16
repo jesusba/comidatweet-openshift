@@ -3,11 +3,16 @@
     <title>.::Usando la API de twitter::.</title>
   </head>
   <body>
-    <p>Introduzca el nombre de un restaurante (incluyendo ubicacion sin comas):</p>
+    <p>Introduzca el nombre de un restaurante:</p>
     <br/>
     <form action="/buscar" method="post">
       <input type="text" name="nombre" id="name" placeholder="Introduzca aqui el nombre" class="cform-text" size="25"/>
       <p><input type="submit" class="button" value="Enviar" /></p>
     </form>
+    <p>Introduzca el nombre de un restaurante (con su ubicacion):</p>
+    <br/>
+    <form action="/buscar" method="post">
+      <input type="text" name="nombre1" id="name1" placeholder="Introduzca aqui el nombre" class="cform-text" size="25"/>
+      <p><input type="submit" class="button" value="Enviar" /></p>
   </body>
 </html>

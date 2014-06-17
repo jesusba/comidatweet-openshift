@@ -53,7 +53,7 @@ def get_verifier():
 
 @post('/buscar')
 def tweet_search():
-    key = 'AIzaSyBqoZ7ETyXk-18M7yoz2DFPN7eB6_4e3sk'
+    #key = 'AIzaSyBqoZ7ETyXk-18M7yoz2DFPN7eB6_4e3sk'
     texto = request.forms.get("nombre")
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,

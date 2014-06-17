@@ -1,9 +1,9 @@
+# -*- encoding: utf-8 -*-
 
 from bottle import default_app, get, post, template, request, static_file, response
 import requests
 from requests_oauthlib import OAuth1
 from urlparse import parse_qs
-import json
 
 REQUEST_TOKEN_URL = "https://api.twitter.com/oauth/request_token"
 AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate?oauth_token="
@@ -12,10 +12,6 @@ ACCESS_TOKEN_URL = "https://api.twitter.com/oauth/access_token"
 CONSUMER_KEY = "QBYFweXAQsit2LhGT66UJQSOg"
 CONSUMER_SECRET = "5ERrCsaiIevDDFxItsHHHgqr8UX5wFJHNPr1RG3p7NMzqdP8mj"
 TOKENS = {}
-
-#Definiendo funciones para autenticacion en Twitter
-
-#Acceso a la API mediante parametros del cliente
 
 def get_request_token():
     oauth = OAuth1(CONSUMER_KEY,
@@ -49,7 +45,7 @@ def index():
 def get_verifier():
     TOKENS["verifier"] = request.query.oauth_verifier
     get_access_token(TOKENS)
-    return template('buscar')
+    return template('buscar.tpl')
 
 @post('/buscar')
 def tweet_search():
@@ -63,7 +59,7 @@ def tweet_search():
 	url = "https://api.twitter.com/1.1/search/tweets.json"
     
     texto2 = texto.replace(' ','%20')
-	r = requests.get(url=url,params={"q":texto2, "lang":"es", "geocode":"39.737583,-4.2851364,1176137mi", "result_type":"mixed", "count":"10"},auth=oauth)
+	r = requests.get(url=url,params={"q":texto2, "lang":"es", "geocode":"39.737583,-4.2851364,1176137mi", "result_type":"recent", "count":"10"},auth=oauth)
 
 	#listacontenido = []
 	#listaavatar = []

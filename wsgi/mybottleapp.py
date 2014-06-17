@@ -51,7 +51,7 @@ def tweet_search():
     url = "https://api.twitter.com/1.1/search/tweets.json"
     
     texto2 = texto.replace(' ','%20')
-	r = requests.get(url=url,params={"q":texto2, "lang":"es", "geocode":"39.737583,-4.2851364,1176137mi", "result_type":"recent", "count":"10"},auth=oauth)
+    r = requests.get(url=url,params={"q":texto2, "lang":"es", "geocode":"39.737583,-4.2851364,1176137mi", "result_type":"recent", "count":"10"},auth=oauth)
 
 	#listacontenido = []
 	#listaavatar = []

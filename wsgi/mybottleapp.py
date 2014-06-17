@@ -51,9 +51,9 @@ def get_verifier():
 def tweet_search():
     #key = 'AIzaSyBqoZ7ETyXk-18M7yoz2DFPN7eB6_4e3sk'
     texto = request.forms.get("nombre")
-    oauth = OAuth1(CONSUMER_KEY,client_secret=CONSUMER_SECRET,resource_owner_key="access_token",resource_owner_secret="access_token_secret")                   
+    oauth = OAuth1(CONSUMER_KEY,client_secret=CONSUMER_SECRET,resource_owner_key="access_token",resource_owner_secret="access_token_secret",)                   
 
-	url = "https://api.twitter.com/1.1/search/tweets.json"
+    url = "https://api.twitter.com/1.1/search/tweets.json"
     
     texto2 = texto.replace(' ','%20')
 	r = requests.get(url=url,params={"q":texto2, "lang":"es", "geocode":"39.737583,-4.2851364,1176137mi", "result_type":"recent", "count":"10"},auth=oauth)

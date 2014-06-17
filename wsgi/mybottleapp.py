@@ -14,9 +14,8 @@ CONSUMER_SECRET = "5ERrCsaiIevDDFxItsHHHgqr8UX5wFJHNPr1RG3p7NMzqdP8mj"
 TOKENS = {}
 
 def get_request_token():
-    oauth = OAuth1(CONSUMER_KEY,
-                   client_secret=CONSUMER_SECRET,
-    )
+    oauth = OAuth1(CONSUMER_KEY,client_secret=CONSUMER_SECRET,)
+    
     r = requests.post(url=REQUEST_TOKEN_URL, auth=oauth)
     credentials = parse_qs(r.content)
     TOKENS["request_token"] = credentials.get('oauth_token')[0]

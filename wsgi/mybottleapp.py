@@ -26,8 +26,8 @@ def get_request_token():
 def get_access_token(TOKENS):
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
-                   resource_owner_key="request_token",
-                   resource_owner_secret="request_token_secret",
+                   resource_owner_key=TOKENS["request_token"],
+                   resource_owner_secret=TOKENS["request_token_secret"],
                    verifier=TOKENS["verifier"],
     )
 
@@ -55,8 +55,8 @@ def search_tweets():
         get_access_token(TOKENS)
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
-                   resource_owner_key="access_token",
-                   resource_owner_secret="access_token_secret")
+                   resource_owner_key=TOKENS["access_token"],
+                   resource_owner_secret=TOKENS["access_token_secret"])
 
     texto = request.forms.get("nombre")
     url = "https://api.twitter.com/1.1/search/tweets.json"

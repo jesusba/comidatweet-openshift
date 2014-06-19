@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 
-from bottle import default_app, get, post, template, request, static_file, response
+import bottle
 import requests
+import json
 from requests_oauthlib import OAuth1
 from urlparse import parse_qs
 
@@ -14,43 +15,53 @@ CONSUMER_SECRET = "5ERrCsaiIevDDFxItsHHHgqr8UX5wFJHNPr1RG3p7NMzqdP8mj"
 TOKENS = {}
 
 def get_request_token():
-    oauth = OAuth1(CONSUMER_KEY,client_secret=CONSUMER_SECRET,)
-    
+    oauth = OAuth1(CONSUMER_KEY,
+                   client_secret=CONSUMER_SECRET,
+    )
     r = requests.post(url=REQUEST_TOKEN_URL, auth=oauth)
     credentials = parse_qs(r.content)
     TOKENS["request_token"] = credentials.get('oauth_token')[0]
     TOKENS["request_token_secret"] = credentials.get('oauth_token_secret')[0]
-
+    
 def get_access_token(TOKENS):
-    oauth = OAuth1(CONSUMER_KEY,client_secret=CONSUMER_SECRET,resource_owner_key=TOKENS["request_token"],resource_owner_secret=TOKENS["request_token_secret"],verifier=TOKENS["verifier"],)
+    oauth = OAuth1(CONSUMER_KEY,
+                   client_secret=CONSUMER_SECRET,
+                   resource_owner_key=TOKENS["request_token"],
+                   resource_owner_secret=TOKENS["request_token_secret"],
+                   verifier=TOKENS["verifier"],
+    )
 
     r = requests.post(url=ACCESS_TOKEN_URL, auth=oauth)
     credentials = parse_qs(r.content)
     TOKENS["access_token"] = credentials.get('oauth_token')[0]
     TOKENS["access_token_secret"] = credentials.get('oauth_token_secret')[0]
 
-@get('/')
+@bottle.get('/')
 def index():
     get_request_token()
     authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
-    return template('index.tpl', authorize_url=authorize_url)
+    return bottle.template('index.tpl', authorize_url=authorize_url)
 
-@get('/buscar')
+@bottle.get('/buscar')
 def get_verifier():
-    TOKENS["verifier"] = request.query.oauth_verifier
+    TOKENS["verifier"] = bottle.request.query.oauth_verifier
     get_access_token(TOKENS)
-    return template('buscar.tpl')
+    return bottle.template('buscar.tpl')
 
-@post('/buscar')
-def tweet_search():
-    #key = 'AIzaSyBqoZ7ETyXk-18M7yoz2DFPN7eB6_4e3sk'
-    texto = request.forms.get("nombre")
-    oauth = OAuth1(CONSUMER_KEY,client_secret=CONSUMER_SECRET,resource_owner_key=TOKENS["access_token"],resource_owner_secret=TOKENS["access_token_secret"],)                   
+@bottle.route('/resultado', method='POST')
+def pagina_rasultante():
+    def get_verifier():
+        TOKENS["verifier"] = bottle.request.query.oauth_verifier
+        get_access_token(TOKENS)
+    oauth = OAuth1(CONSUMER_KEY,
+                   client_secret=CONSUMER_SECRET,
+                   resource_owner_key=TOKENS["access_token"],
+                   resource_owner_secret=TOKENS["access_token_secret"])
 
+    texto = bottle.request.forms.get("nombre")
     url = "https://api.twitter.com/1.1/search/tweets.json"
-    
     texto2 = texto.replace(' ','%20')
-    r = requests.get(url=url,params={"q":texto2, "lang":"es", "geocode":"39.737583,-4.2851364,1176137mi", "result_type":"recent", "count":"10"},auth=oauth)
+    r = requests.get(url=url,params={"q":texto2, "lang":"es", "result_type":"recent", "count":"10"},auth=oauth)
 
 	#listacontenido = []
 	#listaavatar = []

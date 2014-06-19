@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-import bottle
+from bottle import default_app, get, post, template, request, static_file, response
 import requests
 import json
 from requests_oauthlib import OAuth1

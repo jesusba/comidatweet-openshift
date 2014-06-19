@@ -36,20 +36,20 @@ def get_access_token(TOKENS):
     TOKENS["access_token"] = credentials.get('oauth_token')[0]
     TOKENS["access_token_secret"] = credentials.get('oauth_token_secret')[0]
 
-@bottle.get('/')
+@get('/')
 def index():
     get_request_token()
     authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
     return bottle.template('index.tpl', authorize_url=authorize_url)
 
-@bottle.get('/buscar')
+@get('/buscar')
 def get_verifier():
     TOKENS["verifier"] = bottle.request.query.oauth_verifier
     get_access_token(TOKENS)
     return bottle.template('buscar.tpl')
 
-@bottle.route('/resultado', method='POST')
-def pagina_rasultante():
+@route('/resultado', method='POST')
+def search_tweets():
     def get_verifier():
         TOKENS["verifier"] = bottle.request.query.oauth_verifier
         get_access_token(TOKENS)
@@ -58,7 +58,7 @@ def pagina_rasultante():
                    resource_owner_key=TOKENS["access_token"],
                    resource_owner_secret=TOKENS["access_token_secret"])
 
-    texto = bottle.request.forms.get("nombre")
+    texto = request.forms.get("nombre")
     url = "https://api.twitter.com/1.1/search/tweets.json"
     texto2 = texto.replace(' ','%20')
     r = requests.get(url=url,params={"q":texto2, "lang":"es", "result_type":"recent", "count":"10"},auth=oauth)

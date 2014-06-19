@@ -40,13 +40,13 @@ def get_access_token(TOKENS):
 def index():
     get_request_token()
     authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
-    return bottle.template('index.tpl', authorize_url=authorize_url)
+    return template('index.tpl', authorize_url=authorize_url)
 
 @get('/buscar')
 def get_verifier():
     TOKENS["verifier"] = bottle.request.query.oauth_verifier
     get_access_token(TOKENS)
-    return bottle.template('buscar.tpl')
+    return template('buscar.tpl')
 
 @route('/resultado', method='POST')
 def search_tweets():

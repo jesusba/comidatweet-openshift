@@ -26,8 +26,8 @@ def get_request_token():
 def get_access_token(TOKENS):
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
-                   resource_owner_key=TOKENS["request_token"],
-                   resource_owner_secret=TOKENS["request_token_secret"],
+                   resource_owner_key="request_token",
+                   resource_owner_secret="request_token_secret",
                    verifier=TOKENS["verifier"],
     )
 

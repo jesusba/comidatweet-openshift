@@ -44,14 +44,14 @@ def index():
 
 @get('/buscar')
 def get_verifier():
-    TOKENS["verifier"] = bottle.request.query.oauth_verifier
+    TOKENS["verifier"] = request.query.oauth_verifier
     get_access_token(TOKENS)
     return template('buscar.tpl')
 
 @route('/resultado', method='POST')
 def search_tweets():
     def get_verifier():
-        TOKENS["verifier"] = bottle.request.query.oauth_verifier
+        TOKENS["verifier"] = request.query.oauth_verifier
         get_access_token(TOKENS)
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,

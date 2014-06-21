@@ -48,7 +48,7 @@ def get_verifier():
     get_access_token(TOKENS)
     return template('buscar.tpl')
 
-@route('/resultado', method='POST')
+@route('/buscar', method='POST')
 def search_tweets():
     def get_verifier():
         TOKENS["verifier"] = request.query.oauth_verifier

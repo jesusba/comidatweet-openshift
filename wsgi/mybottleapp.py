@@ -62,9 +62,9 @@ def tweet_search():
                    resource_owner_secret="access_token_secret")
 
     texto = bottle.request.forms.get("nombre")
-    texto2 = texto.replace(' ','%20')
+    #texto2 = texto.replace(' ','%20')
     
-    r = requests.get("http://search.twitter.com/search.json", params={"q":texto2, "lang":"es", "result_type":"recent", "count":"10"},auth=oauth)
+    r = requests.get("http://search.twitter.com/search.json", params={"q":texto, "lang":"es", "result_type":"recent", "count":"10"},auth=oauth)
     dicc= json.loads(r.text)['query']
     contenido = json.loads(r.text)['results'][0]['text']
     avatar = json.loads(r.text)['results'][0]['profile_image_url']

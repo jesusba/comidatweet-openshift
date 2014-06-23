@@ -3,6 +3,7 @@
 import bottle
 import requests
 import json
+from bottle import default_app, get, post, template, request, static_file, response
 from requests_oauthlib import OAuth1
 from urlparse import parse_qs
 

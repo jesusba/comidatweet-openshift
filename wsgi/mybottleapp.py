@@ -52,8 +52,10 @@ def get_verifier():
 
 
 @bottle.route('/resultado1', method='POST')
-def get_verifier():
-	TOKENS["verifier"] = bottle.request.query.oauth_verifier
+def tweet_search():
+    def get_verifier():
+        TOKENS["verifier"] = bottle.request.query.oauth_verifier
+        get_access_token(TOKENS)
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
                    resource_owner_key="access_token",

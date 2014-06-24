@@ -73,6 +73,27 @@ def tweet_search():
    
     return bottle.template('resultado1', contenido=contenido, autor=autor, fecha=fecha, avatar=avatar)
 
+@bottle.route('/resultado2', method='POST')
+def tweet_search():
+    def get_verifier():
+        TOKENS["verifier"] = bottle.request.query.oauth_verifier
+        get_access_token(TOKENS)
+    oauth = OAuth1(CONSUMER_KEY,
+                   client_secret=CONSUMER_SECRET,
+                   resource_owner_key="access_token",
+                   resource_owner_secret="access_token_secret")
+
+    texto = bottle.request.forms.get("nombre")
+    #texto2 = texto.replace(' ','%20')
+    
+    r = requests.get("http://search.twitter.com/search.json", params={"q":texto, "lang":"es", "result_type":"recent", "count":"10"},auth=oauth)
+    dicc= json.loads(r.text)['query']
+    contenido = json.loads(r.text)['results'][0]['text']
+    avatar = json.loads(r.text)['results'][0]['profile_image_url']
+    autor = json.loads(r.text)['results'][0]['from_user']
+    fecha = json.loads(r.text)['results'][0]['created_at']
+   
+    return bottle.template('resultado1', contenido=contenido, autor=autor, fecha=fecha, avatar=avatar)
 
 import os
 from bottle import TEMPLATE_PATH
